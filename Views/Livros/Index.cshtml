@@ -1,0 +1,30 @@
+@model IEnumerable<BookStockMvc.Models.LivrosViewModel>
+
+@{ViewBag.Title = "Livros"; }
+<h2>Lista de Livros no Estoque</h2>
+<p>
+    @Html.ActionLink("Inserir Novo Livro", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Id)</th>
+        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+        <th>@Html.DisplayNameFor(model => model.Gênero)</th>
+        <th>@Html.DisplayNameFor(model => model.Autor)</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+            <td>@Html.DisplayFor(modelItem => item.Gênero)</td>
+            <td>@Html.DisplayFor(modelItem => item.Autor)</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id } ) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id } ) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.Id } 
+                    , new { onclick = "return confirm('Deseja realmente deletar este livro?');"})
+            </td>
+        </tr>
+    }
+</table>
